@@ -5,6 +5,7 @@ import moment from "moment/moment";
 const NewPost = () => {
   const nav = useNavigate();
   const [err,setErr]=useState(false)
+  const [fname,setfname]=useState();
   const [post, setPost] = useState({
     name: "",
     location: "",
@@ -32,6 +33,7 @@ const NewPost = () => {
 
   const handleImageProduct = (e) => {
     const file = e.target.files[0];
+    setfname(e.target.value)
     transformFile(file);
     // setvalue(false);
   };
@@ -69,19 +71,26 @@ const NewPost = () => {
         }}
       >
         <div style={{ paddingTop: "25px", paddingLeft: "20px" }}>
-          {" "}
-          <input
+     
+<div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+<input
+          id="files"
             type="file"
             name="PostImage"
             accept="image/*,video/*"
             onChange={handleImageProduct}
+            style={{display:'none'}}
           />
+          <input type='text' placeholder={fname ? fname : "no file choosen"} style={{width:'350px'}} />
+           <label for="files" class="btn" style={{border:'1px solid #707070',backgroundColor:'#f0f0f0',width:'100px',height:'30px'}}>Browse</label>
+</div>
           <div
             style={{
               paddingTop: "10px",
               display: "flex",
-              justifyContent: "space-between",
-              width: "90%",
+              justifyContent: 'space-between',
+              width: "450px",
+
             }}
           >
             <input
@@ -112,7 +121,7 @@ const NewPost = () => {
           <div
             style={{
               paddingTop: "10px",
-              width: "90%",
+              width: "450px",
               display: "flex",
               justifyContent: "center",
             }}
@@ -121,7 +130,7 @@ const NewPost = () => {
               type="text"
               placeholder="Description"
               style={{
-                width: "100%",
+                width: "450px",
                 borderRadius: "5px",
                 border: "1px solid #707070",
               }}
