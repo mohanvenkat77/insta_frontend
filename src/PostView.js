@@ -32,7 +32,7 @@ const [error,setError]=useState()
   const clickHandler=()=>{
 nav('/newpost')
   }
-
+dataa.reverse()
   return (
     <div>
       <div className="Nav">
